@@ -9,13 +9,13 @@
 				foreach($results as $data) {
 					// fields
 					$kategori_ujian = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('kategori_ujian') : $data->kategori_ujian;
-					echo custom_form_group('Kategori Ujian', array('value'=>$kategori_ujian,'name'=>'kategori_ujian', 'placeholder'=>'Kategori ujian'));
+					echo custom_form_group_input('Kategori Ujian', array('value'=>$kategori_ujian,'name'=>'kategori_ujian', 'placeholder'=>'Kategori ujian'));
 
 					echo form_hidden('id', $data->id);
 				}
 
 				//form action
-				echo custom_form_action(base_url($base_url), true, true);
+				echo custom_form_action(base_url($base_url), false, true);
 
 				echo custom_form_close();
 			?>

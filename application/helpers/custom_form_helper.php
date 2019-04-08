@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('custom_form_open'))
 {
+	/**
+	 * custom_form_open
+	 *
+	 * @param	string	$action
+	 * @return	string
+	 */
 	function custom_form_open($action = '') {
 		return form_open($action);
 	}
@@ -10,6 +16,11 @@ if ( ! function_exists('custom_form_open'))
 
 if ( ! function_exists('custom_form_close'))
 {
+	/**
+	 * custom_form_close
+	 *
+	 * @return	string
+	 */
 	function custom_form_close()
 	{
 		return form_close();
@@ -18,6 +29,12 @@ if ( ! function_exists('custom_form_close'))
 
 if ( ! function_exists('custom_form_error'))
 {
+	/**
+	 * custom_form_error
+	 *
+	 * @param	string	$error
+	 * @return	string
+	 */
 	function custom_form_error($error = '')
 	{
 		$type = '';
@@ -37,6 +54,13 @@ if ( ! function_exists('custom_form_error'))
 
 if ( ! function_exists('custom_form_input'))
 {
+	/**
+	 * custom_form_input
+	 *
+	 * @param	mixed	$data (type, name, value, placeholder)
+	 * @param	string	$feedback_icon
+	 * @return	string
+	 */
 	function custom_form_input($data = array(), $feedback_icon = '')
 	{
 		$defaults = array(
@@ -78,9 +102,54 @@ if ( ! function_exists('custom_form_input'))
 	}
 }
 
-if ( ! function_exists('custom_form_group'))
+if ( ! function_exists('custom_form_dropdown'))
 {
-	function custom_form_group($label = '', $data = array(), $feedback_icon = '')
+	/**
+	 * custom_form_dropdown
+	 *
+	 * @param	mixed	$data (selected, options)
+	 * @return	string
+	 */
+	function custom_form_dropdown($data = array())
+	{
+		$defaults = array(
+			'name'=>'',
+			'selected' => '0',
+			'options' => ''
+		);
+
+		$from_data = array_merge ($defaults, $data);
+
+		$error = form_error($from_data['name'], '<span class="help-block">', '</span>');
+
+		$error_display = '';
+		if ($error) {
+			$error_display = 'has-error';
+		}
+
+		$extra = array(
+			'class' => 'form-control'
+		);
+
+		$form = form_dropdown($from_data, null, null, $extra);
+
+		return 	'<div class="form-group has-feedback '.$error_display.'">'.
+					$form.$error.
+				'</div>';
+	}
+}
+
+if ( ! function_exists('custom_form_group_input'))
+{
+	/**
+	 * custom_form_group_input
+	 *
+	 * @param	string	$label
+	 * @param	mixed	$data (type, name, value, placeholder)
+	 * @param	string	$feedback_icon
+	 * @return	string
+	 */
+	function custom_form_group_input($label = '', $data = array(), $feedback_icon = '')
 	{
 		$defaults = array(
 			'name' => 'defaults',
@@ -99,7 +168,13 @@ if ( ! function_exists('custom_form_group'))
 
 if ( ! function_exists('custom_button_link'))
 {
-	function custom_button_link($data = array())
+	/**
+	 * custom_button_link
+	 *
+	 * @param	mixed	$data (url, type, title)
+	 * @return	string
+	 */
+	function custom_button_link($data = array(), $size = 'btn-sm')
 	{
 		$defaults = array(
 			'url' => '',
@@ -109,12 +184,17 @@ if ( ! function_exists('custom_button_link'))
 
 		$from_data = array_merge ($defaults, $data);
 
-		return '<a href="'.$from_data['url'].'" type="button" class="btn btn-sm btn-flat btn-'.$from_data['type'].'">'.$from_data['title'].'</a>';
+		return '<a href="'.$from_data['url'].'" type="button" class="btn '.$size.' btn-flat btn-'.$from_data['type'].'">'.$from_data['title'].'</a>';
 	}
 }
 
 if ( ! function_exists('custom_button_submit'))
 {
+	/**
+	 * custom_button_submit
+	 *
+	 * @return	string
+	 */
 	function custom_button_submit()
 	{
 		return '<button type="submit" class="btn btn-success btn-flat">Simpan</button>';
@@ -123,6 +203,11 @@ if ( ! function_exists('custom_button_submit'))
 
 if ( ! function_exists('custom_button_reset'))
 {
+	/**
+	 * custom_button_reset
+	 *
+	 * @return	string
+	 */
 	function custom_button_reset()
 	{
 		return '<button type="reset" class="btn btn-default btn-flat">Reset</button>';
@@ -131,6 +216,14 @@ if ( ! function_exists('custom_button_reset'))
 
 if ( ! function_exists('custom_form_action'))
 {
+	/**
+	 * custom_form_action
+	 *
+	 * @param	string	$url
+	 * @param	boolean	$reset
+	 * @param	boolean	$back
+	 * @return	string
+	 */
 	function custom_form_action($url, $reset = false, $back = false)
 	{
 		$link = array('title' => 'Kembali', 'url' => $url, 'type'=>'warning');
@@ -138,7 +231,7 @@ if ( ! function_exists('custom_form_action'))
 		$action = '';
 		
 		if ($back) {
-			$action .= custom_button_link($link) . '&nbsp;&nbsp;';
+			$action .= custom_button_link($link, '') . '&nbsp;&nbsp;';
 		}
 
 		if ($reset) {

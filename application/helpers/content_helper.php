@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('content_open'))
 {
+	/**
+	 * content_open
+	 *
+	 * @param	string	$sub_title
+	 * @param	string	$link
+	 * @return	string
+	 */
 	function content_open($sub_title = '', $link = '') {
 		$header = '';
 		$action = '';
@@ -26,6 +33,11 @@ if ( ! function_exists('content_open'))
 
 if ( ! function_exists('content_close'))
 {
+	/**
+	 * content_close
+	 *
+	 * @return	string
+	 */
 	function content_close() {
 		return 	'</div>';
 	}

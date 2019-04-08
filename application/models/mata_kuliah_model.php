@@ -1,18 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kategori_ujian_model extends CI_Model
+class Mata_kuliah_model extends CI_Model
 {
-   private $table    = 'tbl_kategori_ujian';
+   private $table    = 'tbl_mata_kuliah';
 
    public function record_count() {
       return $this->db->count_all($this->table);
    }
 
    public function fetch_data($limit, $start) {
+      $this->db->select('mk.id, mk.mata_kuliah_cd, mk.mata_kuliah, ku.kategori_ujian');
+      $this->db->from($this->table . ' mk');
+      $this->db->join('tbl_kategori_ujian ku', 'mk.kategori_ujian_id = ku.id', 'left');
       $this->db->limit($limit, $start);
-
-      $query = $this->db->get($this->table);
+      $query = $this->db->get();
 
       if ($query->num_rows() > 0) {
          foreach ($query->result() as $row) {
@@ -24,7 +26,7 @@ class Kategori_ujian_model extends CI_Model
       return false;
    }
 
-   public function get($where = '1 = 1') {
+   public function get($where) {
 
       $query = $this->db->get_where($this->table, $where);
 
@@ -41,7 +43,9 @@ class Kategori_ujian_model extends CI_Model
    public function add()
    {
       $data = array(
-        'kategori_ujian' => $this->input->post('kategori_ujian')
+        'mata_kuliah_cd' => $this->input->post('mata_kuliah_cd'),
+        'mata_kuliah' => $this->input->post('mata_kuliah'),
+        'kategori_ujian_id' => $this->input->post('kategori_ujian_id'),
       );
 
       return $this->db->insert($this->table, $data);
@@ -52,7 +56,9 @@ class Kategori_ujian_model extends CI_Model
       $id = $this->input->post('id');
 
       $data = array(
-        'kategori_ujian' => $this->input->post('kategori_ujian')
+        'mata_kuliah_cd' => $this->input->post('mata_kuliah_cd'),
+        'mata_kuliah' => $this->input->post('mata_kuliah'),
+        'kategori_ujian_id' => $this->input->post('kategori_ujian_id'),
       );
 
       $this->db->where('id', $id);

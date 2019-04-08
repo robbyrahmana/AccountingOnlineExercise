@@ -102,19 +102,47 @@ if ( ! function_exists('custom_form_input'))
 	}
 }
 
+if ( ! function_exists('custom_form_group_input'))
+{
+	/**
+	 * custom_form_group_input
+	 *
+	 * @param	string	$label
+	 * @param	mixed	$data (type, name, value, placeholder)
+	 * @param	string	$feedback_icon
+	 * @return	string
+	 */
+	function custom_form_group_input($label = '', $data = array(), $feedback_icon = '')
+	{
+		$defaults = array(
+			'name' => 'defaults',
+		);
+
+		$from_data = array_merge ($defaults, $data);
+
+		return 	'<div class="form-group">
+                  <label for="'.$from_data['name'].'" class="col-sm-3 control-label">'.$label.'</label>'.
+                  '<div class="col-sm-9">'.
+                  	custom_form_input($data, $feedback_icon).
+                  '</div>'.
+                '</div>';
+	}
+}
+
 if ( ! function_exists('custom_form_dropdown'))
 {
 	/**
 	 * custom_form_dropdown
 	 *
-	 * @param	mixed	$data (selected, options)
+	 * @param	mixed	$data (name, selected, options(key=>val))
 	 * @return	string
 	 */
 	function custom_form_dropdown($data = array())
 	{
+
 		$defaults = array(
 			'name'=>'',
-			'selected' => '0',
+			'selected' => '',
 			'options' => ''
 		);
 
@@ -139,17 +167,16 @@ if ( ! function_exists('custom_form_dropdown'))
 	}
 }
 
-if ( ! function_exists('custom_form_group_input'))
+if ( ! function_exists('custom_form_group_dropdown'))
 {
 	/**
-	 * custom_form_group_input
+	 * custom_form_group_dropdown
 	 *
 	 * @param	string	$label
-	 * @param	mixed	$data (type, name, value, placeholder)
-	 * @param	string	$feedback_icon
+	 * @param	mixed	$data (name, selected, options(key=>val))
 	 * @return	string
 	 */
-	function custom_form_group_input($label = '', $data = array(), $feedback_icon = '')
+	function custom_form_group_dropdown($label = '', $data = array())
 	{
 		$defaults = array(
 			'name' => 'defaults',
@@ -158,9 +185,9 @@ if ( ! function_exists('custom_form_group_input'))
 		$from_data = array_merge ($defaults, $data);
 
 		return 	'<div class="form-group">
-                  <label for="'.$from_data['name'].'" class="col-sm-2 control-label">'.$label.'</label>'.
-                  '<div class="col-sm-10">'.
-                  	custom_form_input($data, $feedback_icon).
+                  <label for="'.$from_data['name'].'" class="col-sm-3 control-label">'.$label.'</label>'.
+                  '<div class="col-sm-9">'.
+                  	custom_form_dropdown($data).
                   '</div>'.
                 '</div>';
 	}

@@ -2,17 +2,25 @@
 	<div class="col-md-12">
 		<?php echo content_open('Tambah '.$title); ?>
 		<div class="box-body">
-			<?php echo custom_form_open($base_url.'/add');?>
-				<?php echo custom_form_group('Mata Kuliah'); ?>
-				<div class="pull-right box-tools">
-					<?php
-						$link = array('title' => 'Kembali', 'url' => base_url($base_url), 'type'=>'warning');
-						echo custom_button_link($link);
-					?>
-					<?php echo custom_button_reset(); ?>
-					<?php echo custom_button_submit(); ?>
-				</div>
-			<?php echo custom_form_close(); ?>
+			<?php 
+				echo custom_form_error($this->session->flashdata('error'));
+				echo custom_form_open($base_url.'/add');
+
+				// fields
+				echo custom_form_group_input('Kode Mata Kuliah', array('name'=>'mata_kuliah_cd','value'=>set_value('mata_kuliah_cd'), 'placeholder'=>'Kode Mata Kuliah'));
+				echo custom_form_group_input('Mata Kuliah', array('name'=>'mata_kuliah','value'=>set_value('mata_kuliah'), 'placeholder'=>'Mata Kuliah'));
+
+				$kategori_data = array();
+				foreach ($kategori as $value) {
+					$kategori_data[$value->id] = $value->kategori_ujian;
+				}
+				echo custom_form_group_dropdown('Kategori Ujian', array('name'=>'kategori_ujian_id', 'options'=>$kategori_data));
+
+				//form action
+				echo custom_form_action(base_url($base_url), true, true);
+
+				echo custom_form_close();
+			?>
 		</div>
 		<?php echo content_close(); ?>
 	</div>

@@ -7,7 +7,7 @@
 				echo custom_form_open($base_url.'/add');
 
 				// fields
-				echo custom_form_group_input('Kategori Ujian', array('name'=>'kategori_ujian', 'placeholder'=>'Kategori ujian'));
+				echo custom_form_group_input('Kategori Ujian', array('name'=>'kategori_ujian','value'=>set_value('kategori_ujian'), 'placeholder'=>'Kategori ujian'));
 
 				//form action
 				echo custom_form_action(base_url($base_url), true, true);

@@ -59,9 +59,10 @@ if ( ! function_exists('custom_form_input'))
 	 *
 	 * @param	mixed	$data (type, name, value, placeholder)
 	 * @param	string	$feedback_icon
+	 * @param	mixed	$extra_data
 	 * @return	string
 	 */
-	function custom_form_input($data = array(), $feedback_icon = '')
+	function custom_form_input($data = array(), $feedback_icon = '', $extra_default = array())
 	{
 		$defaults = array(
 			'type' => 'text',
@@ -89,11 +90,13 @@ if ( ! function_exists('custom_form_input'))
 			'placeholder' => $from_data['placeholder']
 		);
 
-		$form = form_input($from_data['name'], $from_data['value'], $extra);
+		$extra_data = array_merge ($extra_default, $extra);
+
+		$form = form_input($from_data['name'], $from_data['value'], $extra_data);
 		if ($from_data['type'] == 'text') {
-			$form = form_input($from_data['name'], $from_data['value'], $extra);
+			$form = form_input($from_data['name'], $from_data['value'], $extra_data);
 		} else if ($from_data['type'] == 'password') {
-			$form = form_password($from_data['name'], $from_data['value'], $extra);
+			$form = form_password($from_data['name'], $from_data['value'], $extra_data);
 		}
 
 		return 	'<div class="form-group has-feedback '.$error_display.'">'.
@@ -188,6 +191,64 @@ if ( ! function_exists('custom_form_group_dropdown'))
                   <label for="'.$from_data['name'].'" class="col-sm-3 control-label">'.$label.'</label>'.
                   '<div class="col-sm-9">'.
                   	custom_form_dropdown($data).
+                  '</div>'.
+                '</div>';
+	}
+}
+
+if ( ! function_exists('custom_form_date'))
+{
+	/**
+	 * custom_form_dropdown
+	 *
+	 * @param	mixed	$data (name, selected, options(key=>val))
+	 * @return	string
+	 */
+	function custom_form_date($data = array())
+	{
+
+		$defaults = array(
+			'type' => 'text',
+			'name' => '',
+			'value' => '',
+			'placeholder' => ''
+		);
+
+		$from_data = array_merge ($defaults, $data);
+
+		$date_script = 	'<script>
+							$(function () {
+								$("#'.$data['name'].'").datepicker({
+									autoclose: true
+								})
+							});
+						</script>';
+
+		return 	custom_form_input($from_data, '', array('id'=>$data['name'], 'readonly'=>'true', 'style'=>'background:white')).$date_script;
+	}
+}
+
+if ( ! function_exists('custom_form_group_date'))
+{
+	/**
+	 * custom_form_group_dropdown
+	 *
+	 * @param	string	$label
+	 * @param	mixed	$data (name, selected, options(key=>val))
+	 * @return	string
+	 */
+	function custom_form_group_date($label = '', $data = array())
+	{
+		$defaults = array(
+			'name' => 'defaults',
+		);
+
+		$from_data = array_merge ($defaults, $data);
+
+		return 	'<div class="form-group">
+                  <label for="'.$from_data['name'].'" class="col-sm-3 control-label">'.$label.'</label>'.
+                  '<div class="col-sm-9">'.
+                  	custom_form_date($data).
                   '</div>'.
                 '</div>';
 	}

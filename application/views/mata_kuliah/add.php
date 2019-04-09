@@ -11,16 +11,18 @@
 				echo custom_form_group_input('Mata Kuliah', array('name'=>'mata_kuliah','value'=>set_value('mata_kuliah'), 'placeholder'=>'Mata Kuliah'));
 
 				$kategori_data = array();
+				$kategori_data[''] = '-- please select --';
 				foreach ($kategori as $value) {
 					$kategori_data[$value->id] = $value->kategori_ujian;
 				}
-				echo custom_form_group_dropdown('Kategori Ujian', array('name'=>'kategori_ujian_id', 'options'=>$kategori_data));
+				echo custom_form_group_dropdown('Kategori Ujian', array('name'=>'kategori_ujian_id','selected'=>set_value('kategori_ujian_id'), 'options'=>$kategori_data));
 
 				$dosen_data = array();
+				$dosen_data[''] = '-- please select --';
 				foreach ($dosen as $value) {
 					$dosen_data[$value->id] = $value->nama;
 				}
-				echo custom_form_group_dropdown('Dosen', array('name'=>'dosen_id', 'options'=>$dosen_data));
+				echo custom_form_group_dropdown('Dosen', array('name'=>'dosen_id','selected'=>set_value('dosen_id'), 'options'=>$dosen_data));
 
 				//form action
 				echo custom_form_action(base_url($base_url), true, true);

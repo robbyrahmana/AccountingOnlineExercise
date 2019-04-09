@@ -97,6 +97,8 @@ if ( ! function_exists('custom_form_input'))
 			$form = form_input($from_data['name'], $from_data['value'], $extra_data);
 		} else if ($from_data['type'] == 'password') {
 			$form = form_password($from_data['name'], $from_data['value'], $extra_data);
+		} else if ($from_data['type'] == 'number') {
+			$form = form_input($from_data, $from_data['value'], $extra_data);
 		}
 
 		return 	'<div class="form-group has-feedback '.$error_display.'">'.
@@ -211,7 +213,7 @@ if ( ! function_exists('custom_form_date'))
 			'type' => 'text',
 			'name' => '',
 			'value' => '',
-			'placeholder' => ''
+			'placeholder' => 'mm/dd/yyyy'
 		);
 
 		$from_data = array_merge ($defaults, $data);

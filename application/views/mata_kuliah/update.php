@@ -16,6 +16,7 @@
 
 					$kategori_ujian_id = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('kategori_ujian_id') : $data->kategori_ujian_id;
 					$kategori_data = array();
+					$kategori_data[''] = '-- please select --';
 					foreach ($kategori as $value) {
 						$kategori_data[$value->id] = $value->kategori_ujian;
 					}
@@ -23,6 +24,7 @@
 
 					$dosen_id = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('dosen_id') : $data->dosen_id;
 					$dosen_data = array();
+					$dosen_data[''] = '-- please select --';
 					foreach ($dosen as $value) {
 						$dosen_data[$value->id] = $value->nama;
 					}

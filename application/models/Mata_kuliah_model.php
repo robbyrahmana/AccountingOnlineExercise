@@ -27,6 +27,24 @@ class Mata_kuliah_model extends CI_Model
       return false;
    }
 
+   public function get_join() {
+
+      $this->db->select('mk.id, mk.mata_kuliah_cd, mk.mata_kuliah, ku.kategori_ujian, d.nama');
+      $this->db->from($this->table . ' mk');
+      $this->db->join('tbl_kategori_ujian ku', 'mk.kategori_ujian_id = ku.id', 'left');
+      $this->db->join('tbl_dosen d', 'mk.dosen_id = d.id', 'left');
+      $query = $this->db->get();
+
+      if ($query->num_rows() > 0) {
+         foreach ($query->result() as $row) {
+            $data[] = $row;
+         }
+         return $data;
+      }
+
+      return false;
+   }
+
    public function get($where) {
 
       $query = $this->db->get_where($this->table, $where);

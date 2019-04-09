@@ -31,6 +31,8 @@ class Mata_kuliah extends MY_Controller
 	{	
 		$this->form_validation->set_rules('mata_kuliah_cd', 'Kode Mata Kuliah', 'trim|required');
 		$this->form_validation->set_rules('mata_kuliah', 'Mata Kuliah', 'trim|required');
+		$this->form_validation->set_rules('kategori_ujian_id', 'Kategori Ujian', 'trim|required');
+		$this->form_validation->set_rules('dosen_id', 'Dosen', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
@@ -54,6 +56,8 @@ class Mata_kuliah extends MY_Controller
 	{	
 		$this->form_validation->set_rules('mata_kuliah_cd', 'Kode Mata Kuliah', 'trim|required');
 		$this->form_validation->set_rules('mata_kuliah', 'Mata Kuliah', 'trim|required');
+		$this->form_validation->set_rules('kategori_ujian_id', 'Kategori Ujian', 'trim|required');
+		$this->form_validation->set_rules('dosen_id', 'Dosen', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 

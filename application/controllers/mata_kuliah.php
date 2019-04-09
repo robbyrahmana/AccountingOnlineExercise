@@ -12,6 +12,7 @@ class Mata_kuliah extends MY_Controller
 
         $this->load->model('mata_kuliah_model', 'mata_kuliah');
         $this->load->model('kategori_ujian_model', 'kategori_ujian');
+        $this->load->model('management_user_model', 'management_user');
 
     }
 
@@ -44,6 +45,7 @@ class Mata_kuliah extends MY_Controller
 		}
 
 		$data["kategori"] = $this->kategori_ujian->get();
+		$data["dosen"] = $this->management_user->get();
 
 		$this->render_page($this->base_url.'/add', $data);
 	}
@@ -66,6 +68,8 @@ class Mata_kuliah extends MY_Controller
 		}
 
 		$data["kategori"] = $this->kategori_ujian->get();
+		$data["dosen"] = $this->management_user->get();
+		
 		$data["results"] = $this->mata_kuliah->get('id='.$id);
 		$this->render_page($this->base_url.'/update', $data);
 	}

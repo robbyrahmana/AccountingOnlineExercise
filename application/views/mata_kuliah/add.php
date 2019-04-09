@@ -16,6 +16,12 @@
 				}
 				echo custom_form_group_dropdown('Kategori Ujian', array('name'=>'kategori_ujian_id', 'options'=>$kategori_data));
 
+				$dosen_data = array();
+				foreach ($dosen as $value) {
+					$dosen_data[$value->id] = $value->nama;
+				}
+				echo custom_form_group_dropdown('Dosen', array('name'=>'dosen_id', 'options'=>$dosen_data));
+
 				//form action
 				echo custom_form_action(base_url($base_url), true, true);
 

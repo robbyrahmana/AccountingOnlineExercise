@@ -21,6 +21,13 @@
 					}
 					echo custom_form_group_dropdown('Kategori Ujian', array('name'=>'kategori_ujian_id', 'selected'=>$kategori_ujian_id, 'options'=>$kategori_data));
 
+					$dosen_id = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('dosen_id') : $data->dosen_id;
+					$dosen_data = array();
+					foreach ($dosen as $value) {
+						$dosen_data[$value->id] = $value->nama;
+					}
+					echo custom_form_group_dropdown('dosen', array('name'=>'dosen_id', 'selected'=>$dosen_id, 'options'=>$dosen_data));
+
 					echo form_hidden('id', $data->id);
 				}
 

@@ -1,21 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mata_kuliah_model extends CI_Model
+class Management_user_model extends CI_Model
 {
-   private $table    = 'tbl_mata_kuliah';
+   private $table    = 'tbl_dosen';
 
    public function record_count() {
       return $this->db->count_all($this->table);
    }
 
    public function fetch_data($limit, $start) {
-      $this->db->select('mk.id, mk.mata_kuliah_cd, mk.mata_kuliah, ku.kategori_ujian, d.nama');
-      $this->db->from($this->table . ' mk');
-      $this->db->join('tbl_kategori_ujian ku', 'mk.kategori_ujian_id = ku.id', 'left');
-      $this->db->join('tbl_dosen d', 'mk.dosen_id = d.id', 'left');
       $this->db->limit($limit, $start);
-      $query = $this->db->get();
+
+      $query = $this->db->get($this->table);
 
       if ($query->num_rows() > 0) {
          foreach ($query->result() as $row) {
@@ -27,7 +24,7 @@ class Mata_kuliah_model extends CI_Model
       return false;
    }
 
-   public function get($where) {
+   public function get($where = '1 = 1') {
 
       $query = $this->db->get_where($this->table, $where);
 
@@ -44,10 +41,8 @@ class Mata_kuliah_model extends CI_Model
    public function add()
    {
       $data = array(
-        'mata_kuliah_cd' => $this->input->post('mata_kuliah_cd'),
-        'mata_kuliah' => $this->input->post('mata_kuliah'),
-        'kategori_ujian_id' => $this->input->post('kategori_ujian_id'),
-        'dosen_id' => $this->input->post('dosen_id'),
+        'nip' => $this->input->post('nip'),
+        'nama' => $this->input->post('nama')
       );
 
       return $this->db->insert($this->table, $data);
@@ -58,10 +53,8 @@ class Mata_kuliah_model extends CI_Model
       $id = $this->input->post('id');
 
       $data = array(
-        'mata_kuliah_cd' => $this->input->post('mata_kuliah_cd'),
-        'mata_kuliah' => $this->input->post('mata_kuliah'),
-        'kategori_ujian_id' => $this->input->post('kategori_ujian_id'),
-        'dosen_id' => $this->input->post('dosen_id'),
+        'nip' => $this->input->post('nip'),
+        'nama' => $this->input->post('nama')
       );
 
       $this->db->where('id', $id);

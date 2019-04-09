@@ -9,7 +9,7 @@ if ( ! function_exists('table_open'))
 	 * @return	string
 	 */
 	function table_open() {
-		return 	'<table class="table table-bordered">';
+		return 	'<table class="table table-bordered table-hover">';
 	}
 }
 
@@ -26,6 +26,9 @@ if ( ! function_exists('table_header'))
 		$content = '';
 
 		foreach ($data as $value=>$width) {
+			if ($value == 'Aksi' && !get_session_action()) {
+				continue;
+			}
 			$content .= '<th style="width: '.$width.'px">'.$value.'</th>';
 		}
 

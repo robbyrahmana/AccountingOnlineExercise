@@ -15,19 +15,21 @@
 						'Kode Mata Kuliah'=>'',
 						'Mata Kuliah'=>'',
 						'Kategori ujian'=>'',
+						'Dosen'=>'',
 						'Aksi'=>'150'
 					)
 				); 
 				
 				// table content
 				if (! $results) {
-					echo table_no_record(3);
+					echo table_no_record(5);
 				} else {
 					foreach($results as $data) {
 						echo '<tr>';
 						echo '<td>'.$data->mata_kuliah_cd.'</td>';
 						echo '<td>'.$data->mata_kuliah.'</td>';
 						echo '<td>'.$data->kategori_ujian.'</td>';
+						echo '<td>'.$data->nama.'</td>';
 						echo table_action(base_url($base_url), $data->id, true, true);
 						echo '</tr>';
 					}

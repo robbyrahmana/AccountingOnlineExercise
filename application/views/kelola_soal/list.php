@@ -16,15 +16,16 @@
 						'Kategori Ujian'=>'',
 						'Dosen'=>'',
 						'Tanggal Ujian'=>'',
-						'Soal Pilihan Ganda'=>'',
-						'Soal Essai'=>'',
-						'Aksi'=>'150'
+						'Jumlah Soal'=>'',
+						'Waktu'=>'',
+						'Aksi Kelola Soal'=>'150',
+						'Aksi Soal'=>'150'
 					)
 				); 
 
 				// table content
 				if (! $results) {
-					echo table_no_record(7);
+					echo table_no_record(8);
 				} else {
 					foreach($results as $data) {
 						echo '<tr>';
@@ -32,9 +33,18 @@
 						echo '<td>'.$data->kategori_ujian.'</td>';
 						echo '<td>'.$data->nama.'</td>';
 						echo '<td>'.nice_date($data->tanggal, 'd - M - Y').'</td>';
-						echo '<td>'.$data->jumlah_pilihan_ganda.'</td>';
-						echo '<td>'.$data->jumlah_essai.'</td>';
+						echo '<td>'.$data->jumlah_soal.'</td>';
+						echo '<td>'.$data->waktu.' menit</td>';
 						echo table_action(base_url($base_url), $data->id, true, true);
+						echo '
+								<td>
+									<div class="box-tools">
+										<a href="'.base_url('soal/list_soal/'.$data->id).'" type="button" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+										
+									</div>
+								</td>
+							';
+							// <a href="'.base_url($base_url.'/'.$data->id).'" type="button" class="btn btn-sm btn-flat btn-success"><i class="fa fa-eye"></i></a>
 						echo '</tr>';
 					}
 				}

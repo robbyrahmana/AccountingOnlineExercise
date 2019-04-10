@@ -30,8 +30,8 @@ class Kelola_soal extends MY_Controller
 	{	
 		$this->form_validation->set_rules('mata_kuliah_id', 'Mata Kuliah', 'trim|required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal Ujian', 'trim|required');
-		$this->form_validation->set_rules('jumlah_pilihan_ganda', 'Jumlah Pilihan Ganda', 'trim|required');
-		$this->form_validation->set_rules('jumlah_essai', 'Jumlah Essai', 'trim|required');
+		$this->form_validation->set_rules('jumlah_soal', 'Jumlah Soal', 'trim|required');
+		$this->form_validation->set_rules('waktu', 'Waktu', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
@@ -54,8 +54,8 @@ class Kelola_soal extends MY_Controller
 	{	
 		$this->form_validation->set_rules('mata_kuliah_id', 'Mata Kuliah', 'trim|required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal Ujian', 'trim|required');
-		$this->form_validation->set_rules('jumlah_pilihan_ganda', 'Jumlah Pilihan Ganda', 'trim|required');
-		$this->form_validation->set_rules('jumlah_essai', 'Jumlah Essai', 'trim|required');
+		$this->form_validation->set_rules('jumlah_soal', 'Jumlah Soal', 'trim|required');
+		$this->form_validation->set_rules('waktu', 'Waktu', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 

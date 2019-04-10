@@ -16,9 +16,9 @@
 
 				echo custom_form_group_date('Tanggal Ujian', array('name'=>'tanggal','value'=>set_value('name'),'value'=>set_value('tanggal')));
 
-				echo custom_form_group_input('Jumlah Pilihan Ganda', array('type'=>'number','name'=>'jumlah_pilihan_ganda','value'=>set_value('jumlah_pilihan_ganda'), 'placeholder'=>'Jumlah Pilihan Ganda'));
+				echo custom_form_group_input('Jumlah Soal', array('type'=>'number','name'=>'jumlah_soal','value'=>set_value('jumlah_soal'), 'placeholder'=>'Jumlah Soal'));
 
-				echo custom_form_group_input('Jumlah Soal Essai', array('type'=>'number','name'=>'jumlah_essai','value'=>set_value('jumlah_essai'), 'placeholder'=>'Jumlah Soal Essai'));
+				echo custom_form_group_input('Waktu', array('type'=>'number','name'=>'waktu','value'=>set_value('waktu'), 'placeholder'=>'Waktu (menit)'));
 
 				//form action
 				echo custom_form_action(base_url($base_url), true, true);

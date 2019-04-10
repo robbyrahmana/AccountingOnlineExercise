@@ -19,11 +19,11 @@
 					$tanggal = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('tanggal') : $data->tanggal;
 					echo custom_form_group_date('Tanggal Ujian', array('name'=>'tanggal','value'=>nice_date($data->tanggal, 'm/d/Y'), 'placeholder'=>'Kode Mata Kuliah'));
 
-					$jumlah_pilihan_ganda = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jumlah_pilihan_ganda') : $data->jumlah_pilihan_ganda;
-					echo custom_form_group_input('Jumlah Pilihan Ganda', array('type'=>'number','name'=>'jumlah_pilihan_ganda','value'=>$jumlah_pilihan_ganda, 'placeholder'=>'Jumlah Pilihan Ganda'));
+					$jumlah_soal = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jumlah_soal') : $data->jumlah_soal;
+					echo custom_form_group_input('Jumlah Soal', array('type'=>'number','name'=>'jumlah_soal','value'=>$jumlah_soal, 'placeholder'=>'Jumlah Soal'));
 
-					$jumlah_essai = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jumlah_essai') : $data->jumlah_essai;
-					echo custom_form_group_input('Jumlah Soal Essai', array('type'=>'number','name'=>'jumlah_essai','value'=>$jumlah_essai, 'placeholder'=>'Jumlah Soal Essai'));
+					$waktu = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('waktu') : $data->waktu;
+					echo custom_form_group_input('Waktu', array('type'=>'number','name'=>'waktu','value'=>$waktu, 'placeholder'=>'Waktu (menit)'));
 
 					echo form_hidden('id', $data->id);
 				}

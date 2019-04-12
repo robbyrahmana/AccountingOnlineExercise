@@ -20,7 +20,9 @@ class Soal extends MY_Controller
 	public function list_soal($id)
 	{
         $data["results"] = $this->soal->fetch_data($id);
-
+        $data["count_essai"] = $this->soal->count_essai($id);
+        $data["count_pilihan_ganda"] = $this->soal->count_pilihan_ganda($id);
+ 
         $data["kelola_soal"] = $this->kelola_soal->get_join($id);
         $data["id"] = $id;
         $this->render_page($this->base_url.'/list', $data);
@@ -110,32 +112,88 @@ class Soal extends MY_Controller
 		$this->render_page($this->base_url.'/essai', $data);
 	}
 
-	public function update($id, $id_kelola)
+	public function update($kelola_soal_soal_id, $soal_id, $kelola_soal_id)
 	{	
-		$this->form_validation->set_rules('kategori_ujian', 'Kategori ujian', 'trim|required');
+		$data["results"] = $this->soal->get_soal($soal_id);
+
+		$data['kelola_soal_id'] = $kelola_soal_id;
+
+		$type = 0;
+		foreach($data["results"] as $d) {
+			$type = $d->tipe_soal;
+		}
+
+		if ($type) {
+			$this->render_page($this->base_url.'/pilihan_ganda_update', $data);
+		} else {
+			$this->render_page($this->base_url.'/essai_update', $data);
+		}
+	}
+
+	public function pilihan_ganda_update()
+	{
+		$this->form_validation->set_rules('soal', 'Soal', 'trim|required');
+		$this->form_validation->set_rules('jawaban_a', 'Jawaban A', 'trim|required');
+		$this->form_validation->set_rules('jawaban_b', 'Jawaban B', 'trim|required');
+		$this->form_validation->set_rules('jawaban_c', 'Jawaban C', 'trim|required');
+		$this->form_validation->set_rules('jawaban_d', 'Jawaban D', 'trim|required');
+		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
+
+			$this->soal_jawaban->update_pilihan_ganda();
+			$status = $this->soal->update();
+
+			if ($status) {
+				$this->set_session_error(SUCCESS_UPDATE, SUCCESS);
+				redirect($this->base_url.'/list_soal/'. $this->input->post('kelola_soal_id'));
+			} else {
+				$this->set_session_error(ERR_UPDATE, ERR);
+			}
+			
+		}
+
+		$data['kelola_soal_id'] = $this->input->post('kelola_soal_id');
+		$this->render_page($this->base_url.'/pilihan_ganda', $data);
+	}
+
+	public function essai_update()
+	{
+		$this->form_validation->set_rules('soal', 'Soal', 'trim|required');
+		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
+
+		if ($this->form_validation->run() == TRUE) {
+
+			$this->soal_jawaban->update_essai();
 
 			$status = $this->soal->update();
 
 			if ($status) {
 				$this->set_session_error(SUCCESS_UPDATE, SUCCESS);
-				redirect($this->base_url);
+				redirect($this->base_url.'/list_soal/'. $this->input->post('kelola_soal_id'));
 			} else {
 				$this->set_session_error(ERR_UPDATE, ERR);
 			}
+			
 		}
 
-		$data["results"] = $this->soal->get('id='.$id);
-
-		$data['kelola_soal_id'] = $id_kelola;
-		
-		$this->render_page($this->base_url.'/update', $data);
+		$data['kelola_soal_id'] = $this->input->post('kelola_soal_id');
+		$this->render_page($this->base_url.'/essai', $data);
 	}
 
-	public function delete($id, $id_kelola)
+	public function delete($kelola_soal_soal_id, $soal_id, $kelola_soal_id)
 	{	
-		$status = $this->kelola_soal_soal->delete($id);
+		$this->kelola_soal_soal->delete($kelola_soal_soal_id);
+
+		$soal = $this->soal->get('id = '.$soal_id);
+		$jawaban_id = 0;
+		foreach($soal as $data) {
+			$jawaban_id = $data->id;
+		}
+		$this->soal_jawaban->delete($jawaban_id);
+
+		$status = $this->soal->delete($soal_id);
+
 
 		if (!$status) {
 			$this->set_session_error(ERR_DELETE, ERR);
@@ -143,7 +201,7 @@ class Soal extends MY_Controller
 			$this->set_session_error(SUCCESS_DELETE, SUCCESS);
 		}
 
-		redirect($this->base_url.'/list_soal/'.$id_kelola);
+		redirect($this->base_url.'/list_soal/'.$kelola_soal_id);
 	}
 	
 }

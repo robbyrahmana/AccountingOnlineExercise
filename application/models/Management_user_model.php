@@ -38,11 +38,12 @@ class Management_user_model extends CI_Model
       return false;
    }
 
-   public function add()
+   public function add($id_user)
    {
       $data = array(
         'nip' => $this->input->post('nip'),
-        'nama' => $this->input->post('nama')
+        'nama' => $this->input->post('nama'),
+        'user_id' => $id_user
       );
 
       return $this->db->insert($this->table, $data);

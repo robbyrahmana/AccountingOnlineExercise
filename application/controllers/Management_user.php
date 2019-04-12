@@ -11,6 +11,7 @@ class Management_user extends MY_Controller
         parent:: __construct();
 
         $this->load->model('management_user_model', 'management_user');
+        $this->load->model('login_model', 'login');
 
     }
 
@@ -29,17 +30,31 @@ class Management_user extends MY_Controller
 	{	
 		$this->form_validation->set_rules('nip', 'NIP', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama Dosen', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
-			$status = $this->management_user->add();
+			if (!$this->login->get('username = "'. $this->input->post('username') .'" or password = "'.sha1($this->input->post('password')) .'"')) {
+				$id_user = $this->login->add();
 
-			if ($status) {
-				$this->set_session_error(SUCCESS_INSERT, SUCCESS);
-				redirect($this->base_url);
+				if ($id_user) {
+					
+					$status = $this->management_user->add($id_user);
+
+					if ($status) {
+						$this->set_session_error(SUCCESS_INSERT, SUCCESS);
+						redirect($this->base_url);
+					} else {
+						$this->set_session_error(ERR_INSERT, ERR);
+					}
+				} else {
+					$this->set_session_error(ERR_INSERT, ERR);
+				}
 			} else {
-				$this->set_session_error(ERR_INSERT, ERR);
+				$this->set_session_error(ERR_INSERT. ' (Duplicate username or password)', ERR);
 			}
+			
 		}
 
 		$this->render_page($this->base_url.'/add');

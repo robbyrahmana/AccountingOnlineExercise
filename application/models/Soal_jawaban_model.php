@@ -30,12 +30,43 @@ class Soal_jawaban_model extends CI_Model
       return $this->db->insert_id();
    }
 
-   public function update()
+   public function get($where = '1 = 1') {
+
+      $query = $this->db->get_where($this->table, $where);
+
+      if ($query->num_rows() > 0) {
+         foreach ($query->result() as $row) {
+            $data[] = $row;
+         }
+         return $data;
+      }
+
+      return false;
+   }
+
+   public function update_pilihan_ganda()
    {
-      $id = $this->input->post('id');
+
+      $id = $this->input->post('jawaban_id');
 
       $data = array(
-        'kategori_ujian' => $this->input->post('kategori_ujian')
+        'jawaban_a' => $this->input->post('jawaban_a'),
+        'jawaban_b' => $this->input->post('jawaban_b'),
+        'jawaban_c' => $this->input->post('jawaban_c'),
+        'jawaban_d' => $this->input->post('jawaban_d'),
+      );
+
+      $this->db->where('id', $id);
+      return $this->db->update($this->table, $data);
+   }
+
+   public function update_essai()
+   {
+
+      $id = $this->input->post('jawaban_id');
+
+      $data = array(
+        'jawaban_essai' => $this->input->post('jawaban')
       );
 
       $this->db->where('id', $id);

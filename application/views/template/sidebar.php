@@ -32,7 +32,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div>
-        <p><center>Welcome <?php echo $this->session->userdata('username'); ?></center></p>
+        <p><center>Welcome <?php echo $this->session->userdata('nama'); ?></center></p>
       </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->

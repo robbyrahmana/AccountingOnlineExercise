@@ -28,6 +28,24 @@ class Kelola_soal_model extends CI_Model
       return false;
    }
 
+   public function fetch_calendar() {
+      $this->db->select('ks.id, ks.tanggal, mk.mata_kuliah, ku.kategori_ujian, d.nama');
+      $this->db->from($this->table . ' ks');
+      $this->db->join('tbl_mata_kuliah mk', 'ks.mata_kuliah_id = mk.id', 'left');
+      $this->db->join('tbl_kategori_ujian ku', 'mk.kategori_ujian_id = ku.id', 'left');
+      $this->db->join('tbl_dosen d', 'mk.dosen_id = d.id', 'left');
+      $query = $this->db->get();
+
+      if ($query->num_rows() > 0) {
+         foreach ($query->result() as $row) {
+            $data[] = $row;
+         }
+         return $data;
+      }
+
+      return false;
+   }
+
    public function get_join($id = '') {
 
       $this->db->select('ks.id, ks.tanggal, ks.jumlah_soal, ks.waktu, mk.mata_kuliah, ku.kategori_ujian, d.nama');

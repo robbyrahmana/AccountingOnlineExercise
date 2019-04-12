@@ -33,4 +33,31 @@ class Login_model extends CI_Model
    {
       return $this->_data;
    }
+
+   public function add()
+   {
+      $data = array(
+        'username' => $this->input->post('username'),
+        'password' => sha1($this->input->post('password')),
+        'role' => $this->input->post('role')
+      );
+
+      $this->db->insert($this->table, $data);
+
+      return $this->db->insert_id();
+   }
+
+   public function get($where = '1 = 1') {
+
+      $query = $this->db->get_where($this->table, $where);
+
+      if ($query->num_rows() > 0) {
+         foreach ($query->result() as $row) {
+            $data[] = $row;
+         }
+         return $data;
+      }
+
+      return false;
+   }
 }

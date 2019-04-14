@@ -42,6 +42,10 @@ class MY_Controller extends CI_Controller
 			if (! $this->permission_check()) {
 				redirect('errors/error_401');
 			}
+
+			if ($this->session->userdata('role') == 'Mahasiswa') {
+				redirect('mahasiswa');
+			}
 		}
 	}
 

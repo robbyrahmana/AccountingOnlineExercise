@@ -9,4 +9,4 @@
 ?></p>
 </div>
 <?php echo form_hidden('soal_id', $data_soal->id); ?>
-<?php print_r($this->session->userdata($data_soal->id)); ?>
+<?php echo form_hidden('tipe_soal', $data_soal->tipe_soal); ?>

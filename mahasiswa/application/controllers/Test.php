@@ -23,6 +23,7 @@ class Test extends MY_Controller
 	    }
 	    
 		$this->test->get_soal($id);
+		$this->test->get_time($id);
 		$data['kelola_soal_id'] = $id; 
 		$this->load->view('test/soal', $data);
 	}
@@ -50,12 +51,28 @@ class Test extends MY_Controller
 			'kelola_soal_id' => $this->input->post('kelola_soal_id'),
 			'soal_id' => $this->input->post('soal_id'),
 			'jawaban' => $this->input->post('jawaban'),
+			'tipe_soal' => $this->input->post('tipe_soal'),
 			'jawaban_benar' => $jawaban_benar
 		);
 
 		if ($soal_id) {
 			$this->session->set_userdata('soal-'.$soal_id, $data);
 		}
+	}
+
+	public function submit($id)
+	{	
+		$kelola_soal_mahasiswa_id = $this->test->kelola_soal_mahasiswa($id);
+
+		foreach($_SESSION as $key => $value)
+	    {
+	        if (strpos($key, 'soal-') === 0)
+	        {
+	          $this->test->add($kelola_soal_mahasiswa_id, $this->session->userdata($key));
+	        }
+	    }
+	    
+		$this->load->view('test/complete');
 	}
 	
 }

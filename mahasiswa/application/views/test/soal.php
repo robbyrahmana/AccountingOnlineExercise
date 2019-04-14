@@ -36,6 +36,25 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+  <header class="main-header">
+    <!-- Logo -->
+    <div class="logo">
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b><span id="time"></span> </b>Minutes</span>
+    </div>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user-menu">
+            <?php echo '<li><a href="javascript:my_submit(\''.base_url('test/submit/'.$kelola_soal_id).'\')">' ?>
+              <span class="hidden-xs">Submit Exercise</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 	<aside class="main-sidebar">
 	  <!-- sidebar: style can be found in sidebar.less -->
 	  <section class="sidebar">
@@ -91,6 +110,9 @@
   
   $(document).ready(function() {
     my_function(0);
+    var fiveMinutes = 60 * <?php echo $this->session->userdata('time'); ?>;
+    display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
   });
 
   function my_function(soal_id) {   
@@ -103,6 +125,33 @@
         if(statusTxt == "error")
           alert("Error: " + xhr.status + ": " + xhr.statusText);
       });
+    });
+  }
+
+  function startTimer(duration, display) {
+      var timer = duration, hours, minutes, seconds;
+      setInterval(function () {
+          hours = parseInt((timer / (60*60)) % 24, 10)
+          minutes = parseInt((timer / 60) % 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          hours = hours < 10 ? "0" + hours : hours;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = hours + ":" + minutes + ":" + seconds;
+
+          //check if finish
+          if (--timer < 0) {
+              // timer = duration;
+              alert();
+          }
+      }, 1000);
+  }
+
+  function my_submit(url) {
+    $("#data_jawaban").ajaxSubmit(function() {
+      window.location.href = url;
     });
   }
 </script>

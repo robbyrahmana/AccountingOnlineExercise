@@ -10,6 +10,7 @@ class Test extends MY_Controller
         parent:: __construct();
 
         $this->load->model('test_model', 'test');
+        $this->load->model('kelola_soal_model', 'kelola_soal');
     }
 
 	public function soal($id)
@@ -22,10 +23,15 @@ class Test extends MY_Controller
 	        }
 	    }
 	    
-		$this->test->get_soal($id);
-		$this->test->get_time($id);
-		$data['kelola_soal_id'] = $id; 
-		$this->load->view('test/soal', $data);
+	    if (!in_array($id, $this->kelola_soal->get_existing_kelola_mahasiswa())) {
+	    	$this->test->get_soal($id);
+			$this->test->get_time($id);
+			$data['kelola_soal_id'] = $id; 
+			$this->load->view('test/soal', $data);
+	    } else {
+	    	$this->load->view('test/complete');
+	    }
+		
 	}
 
 	public function navigate($seq)

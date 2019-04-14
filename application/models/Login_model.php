@@ -13,6 +13,7 @@ class Login_model extends CI_Model
 
       $this->db->where('username', $username);
       $this->db->where('password', sha1($password));
+      $this->db->where_in('role', array('Admin', 'Dosen'));
 
       $query = $this->db->get($this->table);
 

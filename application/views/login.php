@@ -43,6 +43,8 @@
         <!-- /.col -->
       </div>
 
+      <a href="<?php echo base_url('/mahasiswa') ?>">Go to mahasiswa site</a>
+
    <?php echo custom_form_close(); ?>
 
   </div>

@@ -35,7 +35,7 @@
 						echo '<td>'.nice_date($data->tanggal, 'd - M - Y').'</td>';
 						echo '<td>'.$data->jumlah_soal.'</td>';
 						echo '<td>'.$data->waktu.' menit</td>';
-						echo table_action(base_url($base_url), $data->id, true, true);
+						echo table_action(base_url($base_url), $data->id, true, false);
 						echo '
 								<td>
 									<div class="box-tools">

@@ -38,6 +38,16 @@ class Management_user_model extends CI_Model
       return false;
    }
 
+   public function get_for_session($where = '1 = 1') {
+
+      $query = $this->db->get_where($this->table, $where);
+
+      if ($query->num_rows() > 0) {
+         $row = $query->row_array();
+         $this->session->set_userdata('userdata', $row);
+      }
+   }
+
    public function add($id_user)
    {
       $data = array(

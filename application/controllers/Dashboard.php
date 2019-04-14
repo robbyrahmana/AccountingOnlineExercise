@@ -16,7 +16,7 @@ class Dashboard extends MY_Controller
 	public function index()
 	{	
 		if ($this->session->userdata('role') == 'Dosen') {
-			$this->session->set_userdata( $this->management_user->get('user_id = '.$this->session->userdata('id')) );
+			$this->management_user->get_for_session('user_id = '.$this->session->userdata('id'));
 		}
 
         $data["results"] = $this->kelola_soal->fetch_calendar();

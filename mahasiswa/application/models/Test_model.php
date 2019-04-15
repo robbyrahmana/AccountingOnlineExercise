@@ -62,7 +62,7 @@ class Test_model extends CI_Model
    public function kelola_soal_mahasiswa($id)
    {
       $data = array(
-         'mahasiswa_id' => $this->session->userdata('userdata')['user_id'],
+         'mahasiswa_id' => $this->session->userdata('userdata')['id'],
          'kelola_soal_id' => $id,
          'tanggal' => date("Y-m-d")
       );

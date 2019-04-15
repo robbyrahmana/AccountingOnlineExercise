@@ -33,7 +33,7 @@ class Kelola_soal_model extends CI_Model
    }
 
    public function get_existing_kelola_mahasiswa() {
-      $query1 = $this->db->query('select `kelola_soal_id` from tbl_kelola_soal_mahasiswa where mahasiswa_id = '.$this->session->userdata('userdata')['user_id']);
+      $query1 = $this->db->query('select `kelola_soal_id` from tbl_kelola_soal_mahasiswa where mahasiswa_id = '.$this->session->userdata('userdata')['id']);
       $query1_result = $query1->result();
       $data_id= array();
       foreach($query1_result as $row){

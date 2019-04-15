@@ -84,7 +84,7 @@
 				      <span id="soal"></span>
               <?php echo form_hidden('kelola_soal_id', $kelola_soal_id); ?>
               <?php echo form_hidden('seq_id', 0); ?>
-              <?php echo form_hidden('mahasiswa_id', $this->session->userdata('userdata')['user_id']); ?>
+              <?php echo form_hidden('mahasiswa_id', $this->session->userdata('userdata')['id']); ?>
               <?php echo custom_form_close(); ?>
 		   			</div>
 		   			</div>
@@ -144,7 +144,7 @@
           //check if finish
           if (--timer < 0) {
               // timer = duration;
-              alert();
+              my_submit('<?php echo base_url('test/submit/'.$kelola_soal_id); ?>');
           }
       }, 1000);
   }

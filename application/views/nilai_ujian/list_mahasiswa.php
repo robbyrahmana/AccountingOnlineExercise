@@ -42,7 +42,7 @@
 						echo '
 								<td>
 									<div class="box-tools">
-										<a href="'.base_url('nilai_ujian/mahasiswa_essai/'.$data->id).'" type="button" class="btn btn-sm btn-flat btn-success">periksa essai</a>&nbsp;&nbsp;
+										<a href="'.base_url('nilai_ujian/mahasiswa_essai/'.$data->id.'/'.$data->mahasiswa_id.'/'. $kelola_soal_id).'" type="button" class="btn btn-sm btn-flat btn-success">periksa essai</a>&nbsp;&nbsp;
 										
 									</div>
 								</td>

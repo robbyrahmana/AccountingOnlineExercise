@@ -29,7 +29,31 @@ class Nilai_ujian extends MY_Controller
 	public function list_mahasiswa($id_kelola_soal)
 	{
 		$data["results"] = $this->kelola_soal_mahasiswa->get_siswa_by_kelola_soal_id($id_kelola_soal);
+		$data["kelola_soal_id"] = $id_kelola_soal;
         $this->render_page($this->base_url.'/list_mahasiswa', $data);
+	}
+
+	public function mahasiswa_essai($id_kelola_soal_mahasiswa, $mahasiswa_id, $id_kelola_soal)
+	{
+
+		$this->form_validation->set_rules('nilai', 'Nilai', 'trim|required');
+
+		if ($this->form_validation->run() == TRUE) {
+
+			$status = $this->kelola_soal_mahasiswa->update();
+
+			if ($status) {
+				$this->set_session_error(SUCCESS_INSERT, SUCCESS);
+			} else {
+				$this->set_session_error(ERR_INSERT, ERR);
+			}
+		}
+
+		$data["results"] = $this->kelola_soal_mahasiswa->get_soal_essai_by_kelola_mahasiswa_id($id_kelola_soal_mahasiswa, $mahasiswa_id);
+		$data["kelola_soal_mahasiswa_id"] = $id_kelola_soal_mahasiswa;
+		$data["mahasiswa_id"] = $mahasiswa_id;
+		$data["kelola_soal_id"] = $id_kelola_soal;
+        $this->render_page($this->base_url.'/mahasiswa_essai', $data);
 	}
 
 }

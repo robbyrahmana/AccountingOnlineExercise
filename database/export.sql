@@ -181,7 +181,8 @@ CREATE TABLE `tbl_soal` (
   `soal` text NOT NULL,
   `jawaban` text NOT NULL,
   `soal_jawaban_id` int(11) NOT NULL,
-  `tipe_soal` int(11) NOT NULL
+  `tipe_soal` int(11) NOT NULL,
+  `bobot_nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

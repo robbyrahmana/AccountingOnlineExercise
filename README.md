@@ -13,5 +13,14 @@
 * Program config
   * Change database connection inside application/config/database.php
   * Change database connection inside mahasiswa/application/config/database.php
+* Profiler
+  * You can change config for profiler inside application/core/MY_Controller.php
+  * You can change config for profiler inside mahasiswa/application/core/MY_Controller.php
+  ![Profiler](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/profiler.PNG)
 * Run application
   * http://localhost:8080/AccountingOnlineExercise/
+
+#### Screen preview:
+![Login Screen](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/login_form.PNG)
+![Home](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/home.PNG)
+![Add Soal](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/add_soal.PNG)

@@ -18,8 +18,9 @@
 
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-        <li class="dropdown user-menu">
+        <li class="dropdown user user-menu">
           <a href="<?php echo base_url('login/logout'); ?>">
+            <i class="fa fa-mail-reply"></i>
             <span class="hidden-xs">Logout</span>
           </a>
         </li>

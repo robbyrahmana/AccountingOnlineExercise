@@ -1,10 +1,10 @@
 # AccountingOnlineExercise
 
 #### File Structure for upload:
-![alt text](http://url/to/img.png)
+![File Structure](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/file_stucture.PNG)
 
 #### Asset folder is came from [AdminLTE](https://adminlte.io) with structure as below:
-![alt text](http://url/to/img.png)
+![Asset folder](https://github.com/robbyrahmana/AccountingOnlineExercise/blob/master/README/asset_content.PNG)
 
 #### Step to run:
 * Database

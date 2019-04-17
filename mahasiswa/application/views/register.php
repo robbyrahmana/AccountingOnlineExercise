@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Simple Tables</title>
+  <title>Daftar Akun Baru</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -36,7 +36,7 @@
 <div class="wrapper">
 	<div class="content-wrapper">
 		<section class="content-header">
-	      <h1>Register new account</h1>
+	      <h1>Daftar Akun Baru</h1>
 	    </section>
 	    <section class="content">
 	    	<div class="row">
@@ -72,12 +72,12 @@
 				      <div class="row">
 				        <!-- /.col -->
 				        <div class="col-xs-4 pull-right">
-				          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+				          <button type="submit" class="btn btn-primary btn-block btn-flat">Daftar</button>
 				        </div>
 				        <!-- /.col -->
 				      </div>
 
-				      <a href="<?php echo base_url('/login') ?>">Already have account?</a>
+				      <a href="<?php echo base_url('/login') ?>">Sudah memiliki akun ?</a>
 
 				   <?php echo custom_form_close(); ?>
 		   			</div>

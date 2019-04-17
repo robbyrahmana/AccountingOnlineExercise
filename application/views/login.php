@@ -26,7 +26,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Please sign in to start your session</p>
+    <p class="login-box-msg">Silahkan Login</p>
 
     <?php echo custom_form_open('login');?>
     
@@ -38,12 +38,12 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-4 pull-right">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
 
-      <a href="<?php echo base_url('/mahasiswa') ?>">Go to mahasiswa site</a>
+      <a href="<?php echo base_url('/mahasiswa') ?>">Halaman Mahasiswa</a>
 
    <?php echo custom_form_close(); ?>
 

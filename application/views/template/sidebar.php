@@ -32,7 +32,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div>
-        <p><center>Welcome <?php 
+        <p><center>Selamat Datang <?php 
           if (null != $this->session->userdata('userdata')) { 
             echo $this->session->userdata('userdata')['nama']; 
           } else {

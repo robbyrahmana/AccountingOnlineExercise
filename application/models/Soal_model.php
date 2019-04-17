@@ -21,7 +21,7 @@ class Soal_model extends CI_Model
 
 
    public function fetch_data($id) {
-      $this->db->select('kss.id, s.id soal_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d');
+      $this->db->select('kss.id, s.id soal_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d, s.bobot_nilai');
       $this->db->from('tbl_kelola_soal_soal kss');
       $this->db->join($this->table.' s', 'kss.soal_id = s.id', 'left');
       $this->db->join('tbl_soal_jawaban j', 's.soal_jawaban_id = j.id', 'left');
@@ -39,7 +39,7 @@ class Soal_model extends CI_Model
    }
 
    public function get_soal($id) {
-      $this->db->select('s.id, j.id jawaban_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d, j.jawaban_essai');
+      $this->db->select('s.id, j.id jawaban_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d, j.jawaban_essai, s.bobot_nilai');
       $this->db->from('tbl_soal s');
       $this->db->join('tbl_soal_jawaban j', 's.soal_jawaban_id = j.id', 'left');
       $this->db->where('s.id', $id);
@@ -76,6 +76,7 @@ class Soal_model extends CI_Model
         'jawaban' => $this->input->post('jawaban'),
         'soal_jawaban_id' => $id,
         'tipe_soal' => $this->input->post('tipe_soal'),
+        'bobot_nilai' => $this->input->post('bobot_nilai'),
       );
 
       $this->db->insert($this->table, $data);
@@ -89,7 +90,8 @@ class Soal_model extends CI_Model
 
       $data = array(
         'soal' => $this->input->post('soal'),
-        'jawaban' => $this->input->post('jawaban')
+        'jawaban' => $this->input->post('jawaban'),
+        'bobot_nilai' => $this->input->post('bobot_nilai'),
       );
 
       $this->db->where('id', $id);

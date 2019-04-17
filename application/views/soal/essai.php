@@ -11,6 +11,8 @@
 				
 				echo custom_form_group_input('Jawaban Benar', array('name'=>'jawaban','value'=>set_value('jawaban'), 'placeholder'=>'Jawaban Benar'));
 
+				echo custom_form_group_input('Bobot Nilai', array('name'=>'bobot_nilai','type'=>'number','value'=>set_value('bobot_nilai'), 'placeholder'=>'Bobot Nilai'));
+
 				echo form_hidden('tipe_soal', '0');
 				echo form_hidden('kelola_soal_id', $kelola_soal_id);
 

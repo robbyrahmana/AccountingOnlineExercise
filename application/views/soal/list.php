@@ -60,13 +60,14 @@
 						'Tipe Soal'=>'',
 						'Soal'=>'',
 						'Jawaban'=>'',
+						'Bobot Nilai'=>'',
 						'Aksi'=>'150'
 					)
 				); 
 
 				// table content
 				if (! $results) {
-					echo table_no_record(4);
+					echo table_no_record(5);
 				} else {
 					foreach($results as $data) {
 						if ( $data->tipe_soal) {
@@ -85,6 +86,7 @@
 						echo '<td>'.$type.'</td>';
 						echo '<td>'.$data->soal.'</td>';
 						echo '<td>'.$data->jawaban.'</td>';
+						echo '<td>'.$data->bobot_nilai.'</td>';
 						echo table_action(base_url($base_url), $data->id.'/'.$data->soal_id.'/'.$id, true, true);
 						echo '</tr>';
 					}

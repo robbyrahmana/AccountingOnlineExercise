@@ -57,6 +57,8 @@ class Test_model extends CI_Model
          );
          $this->db->insert('tbl_kelola_soal_jawaban', $data);
       }
+
+      return $this->db->insert_id();
    }
 
    public function kelola_soal_mahasiswa($id)
@@ -70,6 +72,31 @@ class Test_model extends CI_Model
       $this->db->insert('tbl_kelola_soal_mahasiswa', $data);
 
       return $this->db->insert_id();
+   }
+
+   public function update_nilai_kelola_soal_mahasiswa($kelola_soal_mahasiswa_id, $id_jawaban) 
+   {
+      $this->db->select('s.bobot_nilai, ksj.nilai, ksm.nilai final_result');
+      $this->db->from('tbl_kelola_soal_jawaban ksj');
+      $this->db->join('tbl_soal s', 'ksj.soal_id = s.id', 'inner');
+      $this->db->join('tbl_kelola_soal_mahasiswa ksm', 'ksj.kelola_soal_mahasiswa_id = ksm.id', 'inner');
+      $this->db->where('ksj.id', $id_jawaban);
+      $this->db->where('s.tipe_soal', '1');
+      $query = $this->db->get();
+
+      if ($query->num_rows() > 0) {
+         $data = $query->row_array();
+         $final_result = $data['final_result'] + ($data['bobot_nilai'] * $data['nilai']);
+
+         $data = array(
+            'nilai' => $final_result
+         );
+
+         $this->db->where('id', $kelola_soal_mahasiswa_id);
+         $this->db->update('tbl_kelola_soal_mahasiswa', $data);
+      }
+
+      
    }
 
 }

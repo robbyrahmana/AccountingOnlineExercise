@@ -25,6 +25,8 @@
 				$jawaban['d'] = 'D';
 				echo custom_form_group_dropdown('Jawaban Benar', array('name'=>'jawaban','selected'=>set_value('jawaban'), 'options'=>$jawaban));
 
+				echo custom_form_group_input('Bobot Nilai', array('name'=>'bobot_nilai','type'=>'number','value'=>set_value('bobot_nilai'), 'placeholder'=>'Bobot Nilai'));
+
 				echo form_hidden('tipe_soal', '1');
 				echo form_hidden('kelola_soal_id', $kelola_soal_id);
 

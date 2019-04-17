@@ -221,7 +221,8 @@ if ( ! function_exists('custom_form_date'))
 		$date_script = 	'<script>
 							$(function () {
 								$("#'.$data['name'].'").datepicker({
-									autoclose: true
+									autoclose: true,
+									startDate: \'-0d\'
 								})
 							});
 						</script>';

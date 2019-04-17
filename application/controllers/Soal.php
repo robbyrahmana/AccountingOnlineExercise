@@ -54,6 +54,7 @@ class Soal extends MY_Controller
 		$this->form_validation->set_rules('jawaban_c', 'Jawaban C', 'trim|required');
 		$this->form_validation->set_rules('jawaban_d', 'Jawaban D', 'trim|required');
 		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
+		$this->form_validation->set_rules('bobot_nilai', 'Bobot Nilai', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
@@ -85,6 +86,7 @@ class Soal extends MY_Controller
 	{
 		$this->form_validation->set_rules('soal', 'Soal', 'trim|required');
 		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
+		$this->form_validation->set_rules('bobot_nilai', 'Bobot Nilai', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
@@ -138,6 +140,7 @@ class Soal extends MY_Controller
 		$this->form_validation->set_rules('jawaban_c', 'Jawaban C', 'trim|required');
 		$this->form_validation->set_rules('jawaban_d', 'Jawaban D', 'trim|required');
 		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
+		$this->form_validation->set_rules('bobot_nilai', 'Bobot Nilai', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 
@@ -161,6 +164,7 @@ class Soal extends MY_Controller
 	{
 		$this->form_validation->set_rules('soal', 'Soal', 'trim|required');
 		$this->form_validation->set_rules('jawaban', 'Jawaban Benar', 'trim|required');
+		$this->form_validation->set_rules('bobot_nilai', 'Bobot Nilai', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
 

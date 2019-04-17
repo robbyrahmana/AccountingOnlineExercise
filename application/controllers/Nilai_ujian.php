@@ -56,4 +56,11 @@ class Nilai_ujian extends MY_Controller
         $this->render_page($this->base_url.'/mahasiswa_essai', $data);
 	}
 
+	public function exportData($kelola_soal_id) 
+	{	
+		$data["results"] = $this->kelola_soal_mahasiswa->get_siswa_by_kelola_soal_id($kelola_soal_id);
+
+		$this->load->view($this->base_url.'/printExcel', $data);
+	}
+
 }

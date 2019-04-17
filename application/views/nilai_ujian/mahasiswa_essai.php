@@ -36,6 +36,10 @@
 						<p><?php echo $data->jawaban_mahasiswa; ?></p>
 					</div>
 					<div class="form-group">
+						<label>Bobot Nilai</label>
+						<p><?php echo $data->bobot_nilai; ?></p>
+					</div>
+					<div class="form-group">
 						<label>Nilai</label>
 						<p><?php echo custom_form_open('nilai_ujian/mahasiswa_essai/'.$kelola_soal_mahasiswa_id.'/'.$mahasiswa_id.'/'. $kelola_soal_id); ?>
 							<dl class="dl-horizontal">
@@ -48,7 +52,10 @@
 								</dd>
 							<?php } ?>
 							</dl>
-							<?php echo form_hidden('id', $data->id); echo custom_form_close(); ?>
+							<?php echo form_hidden('id', $data->id); ?>
+							<?php echo form_hidden('id_kelola_mahasiswa', $data->id_kelola_mahasiswa);?>
+							<?php echo form_hidden('final_result', $data->final_result);  ?>
+							<?php echo custom_form_close();  ?>
 						</p>
 					</div>
 	            </div>

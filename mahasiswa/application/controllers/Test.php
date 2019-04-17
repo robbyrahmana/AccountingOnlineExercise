@@ -74,7 +74,8 @@ class Test extends MY_Controller
 	    {
 	        if (strpos($key, 'soal-') === 0)
 	        {
-	          $this->test->add($kelola_soal_mahasiswa_id, $this->session->userdata($key));
+	          $id_jawaban = $this->test->add($kelola_soal_mahasiswa_id, $this->session->userdata($key));
+	          $this->test->update_nilai_kelola_soal_mahasiswa($kelola_soal_mahasiswa_id, $id_jawaban);
 	        }
 	    }
 	    

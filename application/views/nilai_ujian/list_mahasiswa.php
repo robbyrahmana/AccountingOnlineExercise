@@ -10,6 +10,9 @@
 		<div class="box-body">
 			<?php 
 				echo custom_form_error($this->session->flashdata('error'));
+			?>
+			<div id="printArea">	
+			<?php
 				echo table_open();
 
 				// table header
@@ -31,6 +34,20 @@
 					echo table_no_record(8);
 				} else {
 					foreach($results as $data) {
+						$aksi = '';
+						if ($data->total_essai != 0) {
+							$aksi = '
+										<td>
+											<div class="box-tools">
+												<a href="'.base_url('nilai_ujian/mahasiswa_essai/'.$data->id.'/'.$data->mahasiswa_id.'/'. $kelola_soal_id).'" type="button" class="btn btn-sm btn-flat btn-success">periksa '.$data->total_essai.' essai</a>&nbsp;&nbsp;
+												
+											</div>
+										</td>
+									';
+						} else {
+							$aksi = '<td>'. $data->nilai .'</td>';
+						}
+
 						echo '<tr>';
 						echo '<td>'.$data->nim.'</td>';
 						echo '<td>'.$data->nama.'</td>';
@@ -39,14 +56,7 @@
 						echo '<td>'.$data->nama_dosen.'</td>';
 						echo '<td>'.$data->bukti_pembayaran.'</td>';
 						echo '<td>'.nice_date($data->tanggal, 'd - M - Y').'</td>';
-						echo '
-								<td>
-									<div class="box-tools">
-										<a href="'.base_url('nilai_ujian/mahasiswa_essai/'.$data->id.'/'.$data->mahasiswa_id.'/'. $kelola_soal_id).'" type="button" class="btn btn-sm btn-flat btn-success">periksa essai</a>&nbsp;&nbsp;
-										
-									</div>
-								</td>
-							';
+						echo $aksi;
 							// <a href="'.base_url($base_url.'/'.$data->id).'" type="button" class="btn btn-sm btn-flat btn-success"><i class="fa fa-eye"></i></a>
 						echo '</tr>';
 					}
@@ -54,7 +64,15 @@
 
 				echo table_close();
 			?>
+			</div>
+			<a href="javascript:exportExcel()" type="button" class="btn btn-sm btn-flat btn-success">Export Excel</a>
 		</div>
 		<?php echo content_close(); ?>
 	</div>
 </div>
+<script type="text/javascript">
+	function exportExcel() {
+	    var mywindow = window.open('<?php echo base_url('nilai_ujian/exportData/'.$kelola_soal_id); ?>','_blank');
+	    return true;
+	}
+</script>

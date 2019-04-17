@@ -12,12 +12,15 @@ class Kelola_soal_model extends CI_Model
    public function fetch_data($limit, $start) {
       $kelola_soal_id = $this->get_existing_kelola_mahasiswa();
 
+      $today = date('Y-m-d');
+
       $this->db->select('ks.id, ks.tanggal, ks.jumlah_soal, ks.waktu, mk.mata_kuliah, ku.kategori_ujian, d.nama');
       $this->db->from($this->table . ' ks');
       $this->db->join('tbl_mata_kuliah mk', 'ks.mata_kuliah_id = mk.id', 'inner');
       $this->db->join('tbl_kategori_ujian ku', 'mk.kategori_ujian_id = ku.id', 'inner');
       $this->db->join('tbl_dosen d', 'mk.dosen_id = d.id', 'inner');
       $this->db->where('d.id', $this->session->userdata('userdata')['dosen_id']);
+      $this->db->where('ks.tanggal >=', $today);
       $this->db->where_not_in('ks.id', $kelola_soal_id);
       $this->db->limit($limit, $start);
       $query = $this->db->get();

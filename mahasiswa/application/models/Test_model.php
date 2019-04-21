@@ -6,7 +6,7 @@ class Test_model extends CI_Model
    private $table    = 'tbl_soal';
 
    public function get_soal($id) {
-      $this->db->select('s.id, j.id jawaban_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d, j.jawaban_essai');
+      $this->db->select('s.id, j.id jawaban_id, s.tipe_soal, s.soal, s.jawaban, j.jawaban_a, j.jawaban_b, j.jawaban_c, j.jawaban_d, j.jawaban_e, j.jawaban_essai');
       $this->db->from('tbl_kelola_soal_soal kss');
       $this->db->join('tbl_soal s', 'kss.soal_id = s.id', 'left');
       $this->db->join('tbl_soal_jawaban j', 's.soal_jawaban_id = j.id', 'left');

@@ -17,12 +17,15 @@
 				
 				echo custom_form_group_input('Jawaban D', array('name'=>'jawaban_d','value'=>set_value('jawaban_d'), 'placeholder'=>'Jawaban D'));
 
+				echo custom_form_group_input('Jawaban E', array('name'=>'jawaban_e','value'=>set_value('jawaban_e'), 'placeholder'=>'Jawaban E'));
+
 				$jawaban = array();
 				$jawaban[''] = '-- please select --';
 				$jawaban['a'] = 'A';
 				$jawaban['b'] = 'B';
 				$jawaban['c'] = 'C';
 				$jawaban['d'] = 'D';
+				$jawaban['e'] = 'E';
 				echo custom_form_group_dropdown('Jawaban Benar', array('name'=>'jawaban','selected'=>set_value('jawaban'), 'options'=>$jawaban));
 
 				echo custom_form_group_input('Bobot Nilai', array('name'=>'bobot_nilai','type'=>'number','value'=>set_value('bobot_nilai'), 'placeholder'=>'Bobot Nilai'));

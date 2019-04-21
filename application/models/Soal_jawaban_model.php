@@ -5,13 +5,14 @@ class Soal_jawaban_model extends CI_Model
 {
    private $table    = 'tbl_soal_jawaban';
 
-   public function add_pilihan_ganda()
+   public function add_pilihan_ganda($jawaban_a, $jawaban_b, $jawaban_c, $jawaban_d, $jawaban_e)
    {
       $data = array(
-        'jawaban_a' => $this->input->post('jawaban_a'),
-        'jawaban_b' => $this->input->post('jawaban_b'),
-        'jawaban_c' => $this->input->post('jawaban_c'),
-        'jawaban_d' => $this->input->post('jawaban_d'),
+        'jawaban_a' => $jawaban_a,
+        'jawaban_b' => $jawaban_b,
+        'jawaban_c' => $jawaban_c,
+        'jawaban_d' => $jawaban_d,
+        'jawaban_e' => $jawaban_e
       );
 
       $this->db->insert($this->table, $data);
@@ -19,10 +20,10 @@ class Soal_jawaban_model extends CI_Model
       return $this->db->insert_id();
    }
 
-   public function add_essai()
+   public function add_essai($jawaban)
    {
       $data = array(
-        'jawaban_essai' => $this->input->post('jawaban')
+        'jawaban_essai' => $jawaban
       );
 
       $this->db->insert($this->table, $data);
@@ -54,6 +55,7 @@ class Soal_jawaban_model extends CI_Model
         'jawaban_b' => $this->input->post('jawaban_b'),
         'jawaban_c' => $this->input->post('jawaban_c'),
         'jawaban_d' => $this->input->post('jawaban_d'),
+        'jawaban_e' => $this->input->post('jawaban_e'),
       );
 
       $this->db->where('id', $id);

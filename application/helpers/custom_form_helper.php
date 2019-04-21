@@ -99,6 +99,8 @@ if ( ! function_exists('custom_form_input'))
 			$form = form_password($from_data['name'], $from_data['value'], $extra_data);
 		} else if ($from_data['type'] == 'number') {
 			$form = form_input($from_data, $from_data['value'], $extra_data);
+		} else if ($from_data['type'] == 'file') {
+			$form = form_upload($from_data, $from_data['value'], $extra_data);
 		}
 
 		return 	'<div class="form-group has-feedback '.$error_display.'">'.

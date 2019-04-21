@@ -40,7 +40,8 @@
 				$add_data['1'] = 'Pilihan Ganda';
 				echo '<dl class="dl-horizontal">
 						<dt>Tambal Soal</dt>
-						<dd><div class="col-md-3">'.custom_form_dropdown(array('name'=>'tipe_soal','selected'=>set_value('tipe_soal'), 'options'=>$add_data)).'<button type="submit" class="btn btn-success btn-flat">Tambah</button>
+						<dd><div class="col-md-4">'.custom_form_dropdown(array('name'=>'tipe_soal','selected'=>set_value('tipe_soal'), 'options'=>$add_data)).'<button type="submit" class="btn btn-success btn-flat">Tambah</button>
+						<a href="'.base_url($base_url.'/upload'). '/' . $id . '" class="btn btn-primary btn-flat">Upload from (.docx)</a>
 						</div></dd>
 					</dl>';
 
@@ -79,6 +80,8 @@
 								$data->jawaban = $data->jawaban_c;
 							} else if ($data->jawaban == 'd') {
 								$data->jawaban = $data->jawaban_d;
+							} else if ($data->jawaban == 'e') {
+								$data->jawaban = $data->jawaban_e;
 							}
 						}
 						$type = $data->tipe_soal ? 'Pilihan Ganda' : 'Essai';

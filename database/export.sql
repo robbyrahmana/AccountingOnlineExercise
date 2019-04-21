@@ -201,6 +201,7 @@ CREATE TABLE `tbl_soal_jawaban` (
   `jawaban_b` text NOT NULL,
   `jawaban_c` text NOT NULL,
   `jawaban_d` text NOT NULL,
+  `jawaban_e` text NOT NULL,
   `jawaban_essai` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

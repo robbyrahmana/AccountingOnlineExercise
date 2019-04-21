@@ -25,6 +25,11 @@
 				<?php echo form_radio('jawaban', 'd', $this->session->userdata('soal-'.$data_soal->id)['jawaban'] == 'd' ? true : false ) .$data_soal->jawaban_d; ?>
 			</label>
 		</div>
+		<div class="radio">
+			<label>
+				<?php echo form_radio('jawaban', 'e', $this->session->userdata('soal-'.$data_soal->id)['jawaban'] == 'e' ? true : false ) .$data_soal->jawaban_e; ?>
+			</label>
+		</div>
 	</div>
 </p>
 <?php echo form_hidden('soal_id', $data_soal->id); ?>

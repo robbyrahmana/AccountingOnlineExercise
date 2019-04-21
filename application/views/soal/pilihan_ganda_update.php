@@ -23,6 +23,9 @@
 					$jawaban_d = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jawaban_d') : $data->jawaban_d;
 					echo custom_form_group_input('Jawaban D', array('name'=>'jawaban_d','value'=>$jawaban_d, 'placeholder'=>'Jawaban D'));
 
+					$jawaban_e = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jawaban_e') : $data->jawaban_e;
+					echo custom_form_group_input('Jawaban E', array('name'=>'jawaban_e','value'=>$jawaban_e, 'placeholder'=>'Jawaban E'));
+
 					$jawaban_d = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('jawaban') : $data->jawaban;
 					$jawaban = array();
 					$jawaban[''] = '-- please select --';
@@ -30,6 +33,7 @@
 					$jawaban['b'] = 'B';
 					$jawaban['c'] = 'C';
 					$jawaban['d'] = 'D';
+					$jawaban['e'] = 'E';
 					echo custom_form_group_dropdown('Jawaban Benar', array('name'=>'jawaban','selected'=>$jawaban_d, 'options'=>$jawaban));
 
 					$bobot_nilai = $_SERVER["REQUEST_METHOD"]=='POST' ? set_value('bobot_nilai') : $data->bobot_nilai;
